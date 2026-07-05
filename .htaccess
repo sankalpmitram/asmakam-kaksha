@@ -1,0 +1,40 @@
+# .htaccess - अस्माकं कक्षा
+# Security hardening for Apache deployments.
+
+# Disable directory listing everywhere.
+Options -Indexes
+
+# Never execute PHP inside the data or uploads folder (defense in depth).
+<IfModule mod_php.c>
+    <Directory "data">
+        php_flag engine off
+    </Directory>
+    <Directory "uploads">
+        php_flag engine off
+    </Directory>
+</IfModule>
+
+<FilesMatch "\.(json)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# Allow images/uploads to be served, but never .php inside uploads.
+<Directory "uploads">
+    <FilesMatch "\.php$">
+        <IfModule mod_authz_core.c>
+            Require all denied
+        </IfModule>
+        <IfModule !mod_authz_core.c>
+            Order allow,deny
+            Deny from all
+        </IfModule>
+    </FilesMatch>
+</Directory>
+
+DirectoryIndex index.php

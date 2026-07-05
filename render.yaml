@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: asmakam-kaksha
+    env: docker
+    plan: free
+    autoDeploy: true
+    envVars:
+      - key: PORT
+        value: 80
+
+# NOTE on data persistence:
+# This app stores data as JSON files under /data and /uploads instead of a
+# database. Render's free plan uses an ephemeral filesystem, so data will
+# reset whenever the service restarts or redeploys. For real classroom use,
+# either:
+#   1. Attach a Render "Persistent Disk" (paid) to this service, mounted at
+#      a path such as /var/www/html/data (and a second for /uploads if your
+#      plan supports it), or
+#   2. Regularly use Settings > Backup to download a ZIP of your data, and
+#      Settings > Restore after any redeploy.

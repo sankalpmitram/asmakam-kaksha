@@ -1,0 +1,13 @@
+# Runtime data files (auto-created on first request) - do not commit real data.
+/data/*.json
+
+# Uploaded photos / logos - do not commit user uploads.
+/uploads/*
+!/uploads/.gitkeep
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/
