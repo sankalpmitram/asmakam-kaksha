@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: asmakam-kaksha
+    env: docker
+    plan: free
+    autoDeploy: true
+    envVars:
+      - key: PORT
+        value: 80
+      # ---- Firebase credentials (from your service account JSON) ----
+      # Set these in the Render dashboard under Environment (do NOT commit real
+      # values here). See README.md "Firebase Setup" for how to get them.
+      # The same credentials are used for both Firestore (app data) and
+      # Firebase Storage (student photos / school logo).
+      - key: FIREBASE_PROJECT_ID
+        sync: false
+      - key: FIREBASE_CLIENT_EMAIL
+        sync: false
+      - key: FIREBASE_PRIVATE_KEY
+        sync: false
+      # Optional — only needed if your bucket name doesn't follow the
+      # classic "{project_id}.appspot.com" pattern.
+      - key: FIREBASE_STORAGE_BUCKET
+        sync: false
+
+# NOTE on data persistence:
+# App data (classes, students, attendance, settings, users) is stored in
+# Google Firestore, and student photos / school logo uploads are stored in
+# Firebase Storage. Both are real persistent Google Cloud services — they
+# survive Render restarts, redeploys, and free-tier sleep/wake cycles with
+# zero extra configuration or paid disk needed.

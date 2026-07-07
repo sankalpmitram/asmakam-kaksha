@@ -1,0 +1,19 @@
+# .htaccess - अस्माकं कक्षा
+# Security hardening for Apache deployments.
+
+# Disable directory listing everywhere.
+Options -Indexes
+
+# Block direct browser access to any .json file — this also protects
+# firebase-service-account.json if it is ever placed at the project root.
+<FilesMatch "\.(json)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+DirectoryIndex index.php

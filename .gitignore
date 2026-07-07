@@ -1,0 +1,25 @@
+# Firebase service account key (NEVER commit real credentials)
+firebase-service-account.json
+
+# Environment files
+.env
+.env.*
+
+# Logs
+*.log
+
+# Cache / Temp
+*.tmp
+*.cache
+
+# VS Code / IDE
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# PHP temp files
+*.bak
+*.swp
